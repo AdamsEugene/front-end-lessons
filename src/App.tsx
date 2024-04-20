@@ -1,24 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [state, setState] = useState(0);
+  const [updatedValue, setUpdatedValue] = useState(0);
+
+  const increase = () => {
+    setState((prev) => prev + 1);
+  };
+
+  function decrease() {
+    setState(function (prev) {
+      return prev - 1;
+    });
+  }
+
+  const unUpdated = () => {
+    setState(updatedValue);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="main_wrapper">
+      <div className="wrapper">
+        <h1 className="value">{state}</h1>
+        <div className="buttons_wrapper">
+          <button onClick={decrease}>decrease</button>
+          <input
+            type="number"
+            name="adams"
+            id="adams"
+            onChange={(e) => setUpdatedValue(+e.target.value)}
+          />
+          <button onClick={increase}>increase</button>
+        </div>
+        <button onClick={unUpdated}>update</button>
       </div>
-     <h1>Adams Eugene</h1>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
